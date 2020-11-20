@@ -14,7 +14,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
 
 // Config Import
-const config = require('./config');
+try {
+	var config = require('./config');
+} catch (e) {
+	console.log("Could not import config. This probably means you're not working locally.");
+	console.log(e);
+}
 
 // Route import
 const consoleRoutes = require('./routes/consoles');
@@ -41,7 +46,19 @@ app.use(morgan('tiny'));
 // DEVELOPMENT
 // ***************
 // Connect to DB
-mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+
+// Body Parser config
+app.use(bodyParser.urlencoded({extended: true}));
+
+//Mongoose Config
+try{
+	mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+} catch (e) {
+	console.log("Could not connect using config. This probably means you're not working locally");
+	mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+}
+
+mongoose.Promise = global.Promise;
 
 // Express Config
 app.set("view engine", "ejs");
@@ -49,13 +66,10 @@ app.use(express.static('public'));
 
 // Express Session Config
 app.use(expressSession({
-	secret: "qwertyuioplkjhgfdsamnbvcxz",
+	secret: process.env.ES_SECRET || config.expressSession.secret,
 	resave: false,
 	saveUninitialized: false
 }))
-
-// Body Parser config
-app.use(bodyParser.urlencoded({extended: true}));
 
 // Method Override Config
 app.use(methodOverride('_method'));
@@ -73,18 +87,15 @@ app.use((req, res, next) => {
 	next();
 })
 
-
 // Route config
 app.use("/", mainRoutes);
 app.use("/", authRoutes);
 app.use("/consoles", consoleRoutes);
 app.use("/consoles/:id/comments", commentRoutes);
 
-
 // ***************
 // LISTEN
 // ***************
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log("yelp_console is working...");
 });
-
