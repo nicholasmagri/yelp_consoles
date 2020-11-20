@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+
+	<div class="container">
+		<div class = "row mt-2">
+		<% consoles.forEach((console) => { %>
+			<div class = "card mx-3 m-3">
+				<a href="/consoles/<%= console._id %>">
+						<img class = " card-img card-img-top" src="<%= console.image %>" alt = "Picture of the console">
+				</a>
+		
+				<h3 class = "card-title mt-3"><%= console.title %></h3>
+				<p class = "card-text mb-3 mx-3"><%= console.description %></p>
+			</div>
+			<% }) %>
+		</div>
+
+		</div>
+<%- include("partials/footer") %>

@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+<div class="container">
+	<h1>Add New Console</h1>
+	<form action="/consoles" method="POST">
+	  <div class="form-group">
+		<label for="title">Name</label>
+		<input type="text" class="form-control" name="title" placeholder="name" autofocus>
+	  </div>
+	  <div class="form-group">
+		<label for="description">Description</label>
+		<input type="text" class="form-control" name="description">
+	  </div>
+		<div class="form-group">
+		<label for="brand">Brand</label>
+		<select class="form-control" id="brand" name="brand">
+				<option disabled selected> -- Choose below -- </option>
+				<option>Sony</option>
+				<option>Microsoft</option>
+				<option>Nintendo</option>
+		 </select>
+	  </div>
+	<div class="form-group">
+		<label for="model">Model</label>
+		<input type="text" class="form-control" name="model" placeholder="model">
+	  </div>
+	 <div class="form-group">
+		<label for="date">Date</label>
+		<input type="date" class="form-control" name="date">
+	  </div>
+		 <div class="form-group">
+		<label for="issue">Issue</label>
+		<input type="number" class="form-control" name="issue">
+	  </div>
+		 <div class="form-group form-check">
+		<input type="checkbox" class="form-check-input" name="color">
+		<label for="color">Color?</label>
+	  </div>
+	  <div class="form-group">
+		<label for="image">Link to Image</label>
+		<input type="text" class="form-control" name="image" placeholder="https://www.myimage.com">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+
+
+<%- include("partials/footer") %>
