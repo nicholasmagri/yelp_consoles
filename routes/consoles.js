@@ -65,12 +65,24 @@ router.get("/search", async (req, res) => {
 	}
 })
 
+// Genre
+router.get("/brand/:brand", async (req, res) => {
+	// Check if the given genre is valid
+	const validBrands = ["sony", "microsoft", "nintendo"];
+	if (validBrands.includes(req.params.brand.toLowerCase())) {
+		const consoles = await Consoless.find({brand: req.params.brand}).exec();
+		res.render("consoles", {consoles})
+	} else {
+		res.send("Please enter a valid genre")
+	}
+});
+
 // Show
 router.get("/:id", async (req, res) => {
 	try {
 		const consoless = await Consoless.findById(req.params.id).exec();
 		const comments = await Comment.find({consoleId: req.params.id});
-		res.render("consoles_show", {consoless, comments})
+		res.render("consoles_show", {consoless, comments});
 	} catch (err) {
 		console.log(err);
 		res.send("you broke it... //Show part");
