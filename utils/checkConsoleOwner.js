@@ -7,12 +7,13 @@ const checkConsoleOwner = async (req, res, next) => {
 		// If owner, render the form to edit 
 		if(consoless.owner.id.equals(req.user._id)){
 			next();
-		} else{
-			// If not, redirect back to show page
+		} else{ // If not, redirect back to show page
+			req.flash("error", "You don't have permission to do that!")
 			res.redirect("back");
 		}
-	} else {
-		res.redirect("/login"); // If not logged in, redirect to /login
+	} else { // If not logged in, redirect to /login
+		req.flash("error", "You must be logged in to do that.");
+		res.redirect("/login"); 
 	}
 }
 

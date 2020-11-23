@@ -37,11 +37,11 @@ router.post("/", isLoggedIn, async (req, res) => {
 	
 	try{
 		const consol = await Consoless.create(newConsole)
-		console.log(consol);
+		req.flash("success", "Console Created!");
 		res.redirect("/consoles/" + consol._id);
 	} catch (err) {
-		console.log(err);
-		res.send("you broke it... Console Post");
+		req.flash("error", "Error Creating console");
+		res.redirect("/consoles");
 	}
 })
 
@@ -112,9 +112,11 @@ router.put("/:id", checkConsoleOwner, async (req, res) => {
 	}
 	try{
 		const consoless = await Consoless.findByIdAndUpdate(req.params.id, upConsole, {new: true}).exec();
+		req.flash("success", "Console updated!");
 		res.redirect(`/consoles/${req.params.id}`)
 	} catch (err){
-		res.send("You broke it.... Update Part");
+		req.flash("error", "Error updating console");
+		res.redirect("/console");
 	}
 })
 
@@ -123,11 +125,12 @@ router.put("/:id", checkConsoleOwner, async (req, res) => {
 router.delete("/:id", checkConsoleOwner, async (req, res) => {
 	try{
 		const deletedConsole = await Consoless.findByIdAndDelete(req.params.id).exec();
-		console.log("Deleted:", deletedConsole);
+		req.flash("success", "Console deleted");
 		res.redirect("/consoles");
 	} catch (err){
 		console.log(err);
-		res.send("You broke it... Delete part");
+		req.flash("error", "Error deleting console")
+		res.redirect("back");
 	}
 })
 
