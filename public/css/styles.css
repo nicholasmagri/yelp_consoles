@@ -30,3 +30,21 @@
 	width: 100%;
 	height: 50%;
 }
+
+/* landing Page */
+
+.landing {
+	background-color: white;
+	text-align: center;
+}
+
+.landing img{
+	width: 50%;
+	height: 50%;
+}
+
+.landing button{
+	border: 2px solid black;
+	background-color: white;
+	border-radius: 12px;
+}
