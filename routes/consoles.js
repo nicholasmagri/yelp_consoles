@@ -79,6 +79,15 @@ router.get("/brand/:brand", async (req, res) => {
 	}
 });
 
+
+// Vote
+
+router.post("/vote", isLoggedIn, (req, res) => {
+	res.json({
+		message: "Voted!"
+	});
+})
+
 // Show
 router.get("/:id", async (req, res) => {
 	try {
