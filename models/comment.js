@@ -9,7 +9,7 @@ const commentSchema = new mongoose.Schema({
 		username: String
 	},
 	text: String,
-	consoleId: {
+	consolessId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Consoless"
 	}

@@ -82,18 +82,20 @@ router.get("/brand/:brand", async (req, res) => {
 
 // Vote
 
-router.post("/vote", isLoggedIn, (req, res) => {
-	console.log(req.body);
-	res.json({
-		message: "Voted!"
-	});
+router.post("/vote", isLoggedIn, async (req, res) => {
+	console.log("Resquest body:", req.body);
+	
+	const consoless = await Consoless.findById(req.body.consolessId)
+	console.log(consoless);
+	
+	res.json(consoless);
 })
 
 // Show
 router.get("/:id", async (req, res) => {
 	try {
 		const consoless = await Consoless.findById(req.params.id).exec();
-		const comments = await Comment.find({consoleId: req.params.id});
+		const comments = await Comment.find({consolessId: req.params.id});
 		res.render("consoles_show", {consoless, comments});
 	} catch (err) {
 		console.log(err);

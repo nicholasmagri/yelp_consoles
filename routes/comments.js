@@ -7,7 +7,7 @@ const checkCommentOwner = require('../utils/checkCommentOwner');
 
 // New Comment - show form
 router.get("/new", isLoggedIn, (req, res) => {
-	res.render("comments_new", {consoleId: req.params.id})
+	res.render("comments_new", {consolessId: req.params.id})
 })
 
 // Create Comment - Actually Update DB
@@ -20,10 +20,10 @@ router.post("/", isLoggedIn, async (req, res) => {
 			username: req.user.username
 		},
 		text: req.body.text,
-		consoleId: req.body.consoleId
+		consolessId: req.body.consolessId
 		});
 		req.flash("success", "Comment created!");
-		res.redirect(`/consoles/${req.body.consoleId}`)
+		res.redirect(`/consoles/${req.body.consolessId}`)
 	} catch (err) {
 		req.flash("error", "Error creating comment!");
 		res.redirect("/consoles");

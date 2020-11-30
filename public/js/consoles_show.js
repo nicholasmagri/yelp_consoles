@@ -18,9 +18,15 @@ const sendVote = async (voteType) => {
 	}
 	
 	if (voteType === "up") {
-		options.body = JSON.stringify({vote: "up"});
+		options.body = JSON.stringify({
+			voteType: "up",
+			consolessId
+		});
 	} else if (voteType === "down") {
-		options.body = JSON.stringify({vote: "down"});
+		options.body = JSON.stringify({
+			voteType: "down",
+			consolessId
+		});
 	} else {
 		throw "voteType must be 'up' or 'down'"
 	}
