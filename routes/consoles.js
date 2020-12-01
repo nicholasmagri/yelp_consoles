@@ -95,43 +95,47 @@ router.post("/vote", isLoggedIn, async (req, res) => {
 		if(req.body.voteType === "up") { //Upvoting
 			consoless.upvotes.push(req.user.username);
 			consoless.save()
-			response.message = "Upvote tallied!"
+			response = {message: "Upvote tallied!", code: 1}
 		} else if (req.body.voteType === "down") { //Downvoting
 			consoless.downvotes.push(req.user.username);
 			consoless.save()
-			response.message = "Downvote tallied!"
+			response = {message: "Downvote tallied!", code: -1}
 		} else { // Error
-			response.message = "Error 1"
+			response = {message: "Error 1", code: "err"}
 		}
 	} else if (alreadyUpvoted >= 0) { // Already upvoted
 		if(req.body.voteType === "up") {
 			consoless.upvotes.splice(alreadyUpvoted, 1);
 			consoless.save()
-			response.message = "Upvote removed";
+			response = {message: "Upvode removed", code: 0}
 		} else if (req.body.voteType === "down"){
 			consoless.upvotes.splice(alreadyUpvoted, 1);
 			consoless.downvotes.push(req.user.username);
 			consoless.save()
-			response.message = "Changed to downvote";
+			response = {message: "Changed to downvote", code: -1}
 		} else { // Error
-			response.message = "Error 2"
+			response = {message: "Error 2", code: "err"}
 		}
 	} else if (alreadyDownvoted >= 0) { // Already downvoted
 		if(req.body.voteType === "up") {
 			consoless.downvotes.splice(alreadyDownvoted, 1);
 			consoless.upvotes.push(req.user.username);
 			consoless.save()
-			response.message = "Changed to upvote";
+			response = {message: "Changed to upvote", code: 1}
 		} else if (req.body.voteType === "down") {
 			consoless.downvotes.splice(alreadyDownvoted, 1);
 			consoless.save()
-			response.message = "Removed downvote";
+			response = {message: "Removed downvote", code: 0} 
 		} else { // Error 
-			response.message = "Error 3"
+			response = {message: "Error 3", code: "err"}
 		}	
 	} else { // Error
-		response.message = "Error 4"
+		response = {message: "Error 4", code: "err"}
 	}
+	
+	//Update Score immediately prior to sending
+	response.score = consoless.upvotes.length - consoless.downvotes.length;	
+		
 	res.json(response);
 });
 
