@@ -21,11 +21,6 @@
           <a class="dropdown-item" href="/consoles/brand/nintendo">Nintendo</a>
         </div>
       </li>
-		<% if (user) { %>
-			 <li class="nav-item">
-			<a class="nav-link" href="/consoles/new">Add Console</a>
-		  </li>
-		<% } %>
 		 <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Blogs/News
@@ -41,11 +36,16 @@
           Buy Games
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="https://store.playstation.com/en-us/category/d71e8e6d-0940-4e03-bd02-404fc7d31a31/1">Sony</a>
-          <a class="dropdown-item" href="https://www.xbox.com/en-US/games/all-games?xr=shellnav#">Microsoft</a>
-          <a class="dropdown-item" href="https://www.nintendo.com/games/">Nintendo</a>
+          <a class="dropdown-item" href="https://store.playstation.com/en-us/category/d71e8e6d-0940-4e03-bd02-404fc7d31a31/1">Playstation</a>
+          <a class="dropdown-item" href="https://www.xbox.com/en-US/games/all-games?xr=shellnav#">Xbox</a>
+          <a class="dropdown-item" href="https://www.nintendo.com/games/">Nintendo Switch</a>
         </div>
       </li>
+			<% if (user) { %>
+			 <li class="nav-item">
+			<a class="nav-link" href="/consoles/new">Add Console</a>
+		  </li>
+		<% } %>
 	
 		<% if(user){ %>
 			 <li class="nav-item">
