@@ -25,7 +25,27 @@
 			 <li class="nav-item">
 			<a class="nav-link" href="/consoles/new">Add Console</a>
 		  </li>
-		<% } %> 
+		<% } %>
+		 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Blogs/News
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="https://blog.playstation.com/?smcid=pdc%3Aen-us%3Acampaigns-2020-ps5-direct-pre-orders-faq%3Aprimary%2520nav%3Amsg-news%3Aps-blog">Sony</a>
+          <a class="dropdown-item" href="https://www.xbox.com/en-US/community?xr=shellnav">Microsoft</a>
+          <a class="dropdown-item" href="https://www.nintendo.com/whatsnew/">Nintendo</a>
+        </div>
+      </li>
+		  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Buy Games
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="https://store.playstation.com/en-us/category/d71e8e6d-0940-4e03-bd02-404fc7d31a31/1">Sony</a>
+          <a class="dropdown-item" href="https://www.xbox.com/en-US/games/all-games?xr=shellnav#">Microsoft</a>
+          <a class="dropdown-item" href="https://www.nintendo.com/games/">Nintendo</a>
+        </div>
+      </li>
 	
 		<% if(user){ %>
 			 <li class="nav-item">
@@ -38,8 +58,7 @@
 		 <li class="nav-item">
         <a class="nav-link" href="/signup">Sign Up</a>
       </li>
-		<% } %>
-		
+		<% } %>	
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/consoles/search" method="GET">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="term" aria-label="Search">
