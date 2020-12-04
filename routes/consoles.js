@@ -182,7 +182,6 @@ router.put("/:id", checkConsoleOwner, async (req, res) => {
 	}
 })
 
-
 // Delete
 router.delete("/:id", checkConsoleOwner, async (req, res) => {
 	try{

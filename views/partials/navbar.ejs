@@ -21,6 +21,7 @@
           <a class="dropdown-item" href="/consoles/brand/nintendo">Nintendo</a>
         </div>
       </li>
+		<% if(user) { %>
 		 <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Blogs/News
@@ -31,6 +32,9 @@
           <a class="dropdown-item" href="https://www.nintendo.com/whatsnew/">Nintendo</a>
         </div>
       </li>
+		<% } %>
+		
+		<% if(user) { %>
 		  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Buy Games
@@ -41,6 +45,8 @@
           <a class="dropdown-item" href="https://www.nintendo.com/games/">Nintendo Switch</a>
         </div>
       </li>
+		<% } %>
+		
 			<% if (user) { %>
 			 <li class="nav-item">
 			<a class="nav-link" href="/consoles/new">Add Console</a>
